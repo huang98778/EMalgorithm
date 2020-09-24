@@ -1,3 +1,0 @@
-/home/hy/Ecarx_ws/HY520/EMtest/build/CMakeFiles/edit_cache.dir
-/home/hy/Ecarx_ws/HY520/EMtest/build/CMakeFiles/rebuild_cache.dir
-/home/hy/Ecarx_ws/HY520/EMtest/build/CMakeFiles/EMalgorithm.dir
