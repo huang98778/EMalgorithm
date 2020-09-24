@@ -1,0 +1,1 @@
+/usr/bin/c++     -std=c++0x -g   CMakeFiles/EMalgorithm.dir/src/main.cpp.o CMakeFiles/EMalgorithm.dir/src/DataHelper.cpp.o CMakeFiles/EMalgorithm.dir/src/EMalgorithm.cpp.o  -o EMalgorithm -rdynamic 
