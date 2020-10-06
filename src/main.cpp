@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-10-06 11:52:42
+ * @LastEditTime: 2020-10-06 11:52:43
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /EMalgorithm/src/main.cpp
+ */
 #include <iostream>
 #include <vector>
 #include <memory>
@@ -9,9 +17,10 @@
 // using DataHelper
 
 int main( )
-{        
+{
+        std::string dir = "em.txt";
         std::vector<EMData> infoData;
-        DataHelper::getData(infoData);
+        DataHelper::getData(dir, infoData);
         std::cout << infoData.size() << std::endl;
 
         std::shared_ptr<EMalgorithm> pEM = std::shared_ptr<EMalgorithm>(new EMalgorithm());

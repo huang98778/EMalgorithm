@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-10-06 11:51:33
+ * @LastEditTime: 2020-10-06 11:51:34
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /EMalgorithm/src/DataHelper.cpp
+ */
 
 #include "DataHelper.h"
 #include <fstream>
@@ -13,9 +21,9 @@ DataHelper::~DataHelper()
 {
 }
 
-bool DataHelper::getData(std::vector<EMData> &data)
+bool DataHelper::getData(const std::string &dataDir, std::vector<EMData> &data)
 {
-        std::ifstream fin("em.txt");
+        std::ifstream fin(dataDir);
         // fin.open("em.txt");
         if (!fin.is_open())
         {
