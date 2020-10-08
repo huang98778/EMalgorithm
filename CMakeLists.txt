@@ -3,10 +3,10 @@ project(EMalgorithm)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -std=c++0x")
 
-IF(NOT CMAKE_BUILD_TYPE)
+if(NOT CMAKE_BUILD_TYPE)
     SET(CMAKE_BUILD_TYPE Debug)
-ENDIF()
-MESSAGE("Build type: " ${CMAKE_BUILD_TYPE})
+endif()
+message("Build type: " ${CMAKE_BUILD_TYPE})
 
 # include_directories( /src)
 

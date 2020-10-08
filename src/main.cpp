@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-10-06 11:52:42
- * @LastEditTime: 2020-10-06 11:52:43
- * @LastEditors: your name
+ * @LastEditTime: 2020-10-06 19:54:36
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /EMalgorithm/src/main.cpp
  */
@@ -26,6 +26,9 @@ int main( )
         std::shared_ptr<EMalgorithm> pEM = std::shared_ptr<EMalgorithm>(new EMalgorithm());
         pEM->setData(infoData);
         float rate = pEM->predProb();
-        std::cout <<std::setprecision(5)<< rate << std::endl;
+
+        pEM->initEMparams();
+        pEM->solveEMProblem();
+        std::cout << std::setprecision(5) << rate << std::endl;
         return 0;
 }
