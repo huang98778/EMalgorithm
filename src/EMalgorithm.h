@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-10-06 19:51:25
- * @LastEditTime: 2020-10-06 20:06:11
+ * @LastEditTime: 2020-10-14 19:47:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /EMalgorithm/src/EMalgorithm.h
@@ -15,18 +15,28 @@
 #define PI 3.1415926
 // #define max(a,b) (a>b ? a : b)
 
+// template<typename T>
 class EMalgorithm
 {
-private:
-        /* data */
+ 
 public:
         EMalgorithm(/* args */);
         ~EMalgorithm();
 
         void setData(const std::vector<EMData> data);
         float predProb();
+        
         void solveEMProblem();
         void initEMparams();
+
+        // template<typename T>
+        // T gaussian(const T xi, const T mean, const T variance);
+
+        void solveEMProblem(bool todo);
+        // float getGM(const float xi, const float mean, const float variance);
+
+private:
+        void initModelparams();
 
 private:
         std::vector<EMData> m_vHeightData;

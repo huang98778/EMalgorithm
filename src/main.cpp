@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-10-06 11:52:42
- * @LastEditTime: 2020-10-06 19:54:36
+ * @LastEditTime: 2020-10-14 19:42:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /EMalgorithm/src/main.cpp
@@ -27,8 +27,12 @@ int main( )
         pEM->setData(infoData);
         float rate = pEM->predProb();
 
-        pEM->initEMparams();
-        pEM->solveEMProblem();
+        // pEM->initEMparams();        
+        // pEM->solveEMProblem();
+        
+        pEM->solveEMProblem(true);
+
+
         std::cout << std::setprecision(5) << rate << std::endl;
         return 0;
 }
