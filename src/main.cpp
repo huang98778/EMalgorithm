@@ -27,7 +27,7 @@ int main( )
         pEM->setData(infoData);
         float rate = pEM->predProb();
 
-        // pEM->initEMparams();        
+        pEM->initEMparams();        
         // pEM->solveEMProblem();
         
         pEM->solveEMProblem(true);
