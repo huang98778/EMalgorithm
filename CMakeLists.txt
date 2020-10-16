@@ -8,7 +8,9 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 message("Build type: " ${CMAKE_BUILD_TYPE})
 
+# find_package(gflags REQUIRED)
 # include_directories( /src)
+# find_package(Boost REQUIRED COMPONENTS system signals python thread program_options filesystem )
 
 set(EM_SRC
         src/main.cpp
@@ -16,3 +18,9 @@ set(EM_SRC
         src/EMalgorithm.cpp)
 
 add_executable(EMalgorithm ${EM_SRC})
+
+target_link_libraries(EMalgorithm glog
+                                -lboost_system
+                                -lboost_filesystem
+                                # -lboost_program_options
+                                )
