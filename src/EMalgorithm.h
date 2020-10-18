@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-10-06 19:51:25
- * @LastEditTime: 2020-10-15 18:26:24
+ * @LastEditTime: 2020-10-16 14:49:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /EMalgorithm/src/EMalgorithm.h
@@ -51,9 +51,12 @@ private:
 
         int clusters;
 
-        std::vector<float> prior;
-        std::vector<float> means;
-        std::vector<float> variance;
+        // std::vector<float> prior;
+        // std::vector<float> means;
+        // std::vector<float> variance;
+        float *prior;
+        float *means;
+        float *variances;
 
         Gaussian sex[2];
         float percent[2];

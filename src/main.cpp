@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-10-06 11:52:42
- * @LastEditTime: 2020-10-15 20:36:50
+ * @LastEditTime: 2020-10-17 17:26:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /EMalgorithm/src/main.cpp
@@ -17,6 +17,8 @@
 #include "DataHelper.h"
 #include "EMalgorithm.h"
 // using DataHelper
+
+#include "Model.h"
 
 int main(int argc, char* argv[])
 {
@@ -54,6 +56,13 @@ int main(int argc, char* argv[])
 
         LOG(INFO) << "=============  optmize EM  =============\n";
         LOG(INFO) << "========================================\n";
+
+        // test
+        // std::vector<float> xi {4, 4, 4, 7, 7};
+        // std::vector<float> mi {4, 4, 4, 7, 7};
+        // std::vector<float> vi {1, 1, 1, 1, 1};
+        // float t = Model::getMultGM(xi, mi, vi);
+        // LOG(INFO) << " multGM: " << t;
 
         pEM->solveEMProblem(true);
 

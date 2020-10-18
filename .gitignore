@@ -1,6 +1,6 @@
 hy_EMlog/
 build/
-.vscode
+.vscode/
 DATAPROVIDER.INFO
 DP.*
 *.INFO

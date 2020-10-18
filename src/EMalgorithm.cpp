@@ -215,7 +215,7 @@ void EMalgorithm::solveEMProblem(bool todo)
     }
 
     for (int i = 0; i < clusters; i++)    
-        LOG(INFO) << "mean: " << means[i] << " ,variance: " << variance[i]<< " \n";
+        LOG(INFO) << "mean: " << means[i] << " ,variance: " << variances[i]<< " \n";
     
     // cacl accuracy
     int correctNum = 0;
@@ -228,7 +228,7 @@ void EMalgorithm::solveEMProblem(bool todo)
         // char csex;
         for (int i = 0; i < clusters; i++)
         {
-            p[i] = getGM(itt->height, means[i], variance[i]);
+            p[i] = Model::getGM(itt->height, means[i], variances[i]);
         }
 
 
@@ -247,16 +247,48 @@ void EMalgorithm::initModelparams()
 {
     clusters = 2;
 
+    // for (int i = 0; i < clusters; i++)
+    // {
+    //     prior.push_back(1.0 / clusters);
+    // }
+
+    // means.push_back(165);
+    // means.push_back(150);
+
+    // variances.push_back(10);
+    // variances.push_back(10);
+
+    prior = new float[clusters];
+    means = new float[clusters];
+    variances = new float[clusters];
+
+   // init 
+    float mean, variance;
     for (int i = 0; i < clusters; i++)
     {
-        prior.push_back(1.0 / clusters);
+         // init mean variance
+        for (size_t j = 0; j < m_vecData.size(); j++)
+        {
+            mean += m_vecData[j].height;
+        }
+        mean /= m_vecData.size();
+
+        for (size_t j = 0; j < m_vecData.size(); j++)
+        {
+            variance += (m_vecData[j].height - mean) * (m_vecData[j].height - mean);
+        }
+        variance /= m_vecData.size();
+
+
+        // init mixing para
+        prior[i] = 1.0 / clusters;
+
+        // means[i] = mean;
+        variances[i] = variance;
     }
-
-    means.push_back(165);
-    means.push_back(150);
-
-    variance.push_back(10);
-    variance.push_back(10);
+    means[0] = 165;
+    means[1] = 150;
+    LOG(INFO) << "variance: " << variances[0];
 }
 
 void EMalgorithm::doEStep()
@@ -267,7 +299,7 @@ void EMalgorithm::doEStep()
         std::vector<float> wgt;
         for (int j = 0; j < clusters; j++)
         {
-            float weight = prior[j] * getGM(m_vecData[i].height, means[j], variance[j]);
+            float weight = prior[j] * Model::getGM(m_vecData[i].height, means[j], variances[j]);
             // LOG(INFO) << "weight: "<<std::setprecision(3)<<prior[j]<<" " << weight;
             denom = denom + weight;
             wgt.push_back(weight);
@@ -297,7 +329,7 @@ void EMalgorithm::doMStep()
         // std::cout << "nj: " << nj << "\n";
         nalpha.push_back(nj);
 
-        prior.at(i) = nj / float(m_vecData.size());
+        prior[i] = nj / float(m_vecData.size());
         // std::cout << "prior: " << prior.at(i) << "\n";
     }
 
@@ -321,8 +353,8 @@ void EMalgorithm::doMStep()
         {
             sum += weightMat[j][i] * (m_vecData[j].height - means[i]) * (m_vecData[j].height - means[i]);
         }
-        variance[i] = sum / nalpha.at(i);
-        // std::cout << "variance: " << variance[i] << "\n";
+        variances[i] = sum / nalpha.at(i);
+        // std::cout << "variances: " << variances[i] << "\n";
     }
 }
 
@@ -334,7 +366,7 @@ float EMalgorithm::calculateLogLikelyHood()
         float sum = 0.0;
         for (int j = 0; j < clusters; j++)
         {
-            sum += prior[j] * getGM(m_vecData[i].height, means[j], variance[j]);
+            sum += prior[j] * Model::getGM(m_vecData[i].height, means[j], variances[j]);
         }
         result += log(sum);
     }

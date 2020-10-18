@@ -12,6 +12,10 @@ message("Build type: " ${CMAKE_BUILD_TYPE})
 # include_directories( /src)
 # find_package(Boost REQUIRED COMPONENTS system signals python thread program_options filesystem )
 
+find_package(Eigen3 REQUIRED)
+include_directories( ${EIGEN3_INCLUDE_DIRS})
+message("eigen dir: " ${EIGEN3_INCLUDE_DIRS})
+
 set(EM_SRC
         src/main.cpp
         src/DataHelper.cpp
